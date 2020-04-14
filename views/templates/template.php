@@ -16,9 +16,10 @@
     <header> 
         <nav class="nav">
             
-            <a class="nav-link " href="index.php">Index</a>
-            <a class="nav-link" href="page1.php">Page 1</a>
-            <a class="nav-link" href="page2.php">Page 2</a>
+            <a class="nav-link " href="index.php">Accueil</a>
+            <form action="#" method="POST">
+                
+            </form>
         </nav>
     </header>
     

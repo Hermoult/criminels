@@ -42,7 +42,7 @@ Un agent d’accréditation 1 ou 2  peut visualiser l’intégralité des inform
 
 
 
-FORMULAIRE DE RECHERCHE PAR NOM ET/OU PRENOM ACCREDITATION 2
+FORMULAIRE DE RECHERCHE PAR NOM ET/OU PRENOM ACCREDITATION 3
 Un agent d’accréditation 3  peut visualiser une fiche criminel mais celle-ci ne contiendra que la photo, le nom, le prénom et la dernière adresse connue du loustique ainsi que la liste de ses acolytes connus
 
 
