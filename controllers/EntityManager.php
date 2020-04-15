@@ -15,7 +15,7 @@ $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, $prox
 
 // the connection configuration
 $dbParams = array(
-    'dbname'   => 'ciminels',
+    'dbname'   => 'criminel',
     'user'     => 'adrien',
     'password' => 'adrien',
     'host' => 'localhost:3306',
