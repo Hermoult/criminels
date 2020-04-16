@@ -5,7 +5,7 @@ namespace Adrien;
 use Entity\Agents;
 use PDO;
 
-class AgentsMangager{
+class recherchesMangager{
 
     private $pdo;
     private $pdoStatement;
@@ -25,16 +25,17 @@ class AgentsMangager{
     }
     
     /**
-     * readAll lit tous les agents de la table
+     * readAll lit tous les recherches de la table
      *
      * @return void
      */
 
     public function readAll()
     {
-        $this->pdoStatement = $this->pdo->query('SELECT * FROM agents');
+        $this->pdoStatement = $this->pdo->query('SELECT * FROM recherches');
         $this->contact = $this->pdoStatement->fetch();
         return $this->contact;
+
     }
     
     /**
@@ -45,7 +46,7 @@ class AgentsMangager{
      */
     public function read($pseudo)
     {
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
         $this->pdoStatement->execute([$pseudo]);
         $this->contact = $this->pdoStatement->fetch();
         return $this->contact;
@@ -62,10 +63,10 @@ class AgentsMangager{
      */
     public function create ($pseudo,$password,$accreditation)
     {
-        $this->pdoStatement = $this->pdo->prepare('INSERT INTO agents VALUES (NULL,?,?,?)');
+        $this->pdoStatement = $this->pdo->prepare('INSERT INTO recherches VALUES (NULL,?,?,?)');
         $this->pdoStatement->execute([$pseudo,$password,$accreditation]);
 
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
         $this->pdoStatement->execute([$pseudo]);
         $this->newAgent = $this->pdoStatement->fetch();
 
@@ -87,13 +88,16 @@ class AgentsMangager{
          */
         public function update($pseudo,$newPseudo,$newPassword,$newaccreditaion){
 
-            $this->pdoStatement = $this->pdo->prepare('UPDATE agents SET (NULL,?,?,?) WHERE pseudo_a =?');
+        
+
+            $this->pdoStatement = $this->pdo->prepare('UPDATE recherches SET (NULL,?,?,?) WHERE pseudo_a =?');
             $this->pdoStatement->execute([$newPseudo,$newPassword,$newaccreditaion,$pseudo]);
 
-            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
             $this->pdoStatement->execute([$pseudo]);
             $newAgent = $this->pdoStatement->fetch();
 
             return $newAgent;
         }
+    
 } 

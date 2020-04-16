@@ -1,18 +1,10 @@
 <?php
 session_start();
-$pseudo = htmlspecialchars($_POST['pseudo']);
-$pass = htmlspecialchars($_POST['pass']);
+use Doctrine\Common\Proxy\Autoloader;
+use Adrien\AgentsMangaer;
 
-require ('db.php');
+$nom = htmlspecialchars($_POST['nom']);
+$connection = new Adrien\recherchesMangager;
+$contact = $connection->read($nom);
 
-
-    $stmt = $db-> prepare("SELECT * FROM agents WHERE pseudo_a = ?");
-    $stmt->execute([$pseudo]);
-    $agent = $stmt->fetch();
-
-
-    if(password_verify($pass,$agent['mot_de_passe_a'])){
-    header ('location:../views/interface.php');
-    } else {
-    echo "mauvais mdp";
-    }
+print_r('contact');
