@@ -1,6 +1,6 @@
 <?php
 
-namespace Adrien;
+namespace Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

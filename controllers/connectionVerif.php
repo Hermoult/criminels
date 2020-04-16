@@ -11,11 +11,9 @@ require_once('../class/AgentsManager.php');
 $connection = new Adrien\AgentsMangager;
 $contact = $connection->read($pseudo);
 
+var_dump ($connection);
+
 // Création d'un tableau $contact avec toute la base agents
-
-print_r($contact);
-
-
 
     if(password_verify($pass,$contact['mot_de_passe_a'])){
         header ('location:../views/interface.php');
