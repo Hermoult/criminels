@@ -16,11 +16,13 @@ print_r($contact);
 // Création d'un tableau $contact avec toute la base agents
 
     if(password_verify($pass,$contact['mot_de_passe_a'])){
+
         header ('location:../views/interface.php');
         $_SESSION['accreditation'] = $contact['niveau_accreditation_a'];
+        
         print_r($_SESSION);
         } else {
-        echo "mauvais mdp";
+        echo "mauvais identifiants";
     }
 
 

@@ -20,8 +20,12 @@ class recherchesMangager{
      * @return 
      */
     public function __construct(){
-
-        $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+        try {
+            
+            $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+        } catch (\Throwable $th) {
+            die('error connect to database');
+        }
     }
     
     /**
@@ -44,10 +48,15 @@ class recherchesMangager{
      * @param  mixed $id
      * @return void
      */
-    public function read($pseudo)
+    public function read($nom)
     {
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
-        $this->pdoStatement->execute([$pseudo]);
+        try {
+            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE nom_r = ?');
+            
+        } catch (\Throwable $th) {
+            die('error sql requete');
+        }
+        $this->pdoStatement->execute([$nom]);
         $this->contact = $this->pdoStatement->fetch();
         return $this->contact;
         }
