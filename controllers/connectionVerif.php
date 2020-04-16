@@ -1,21 +1,27 @@
 <?php
-session_start();
+
+use Doctrine\Common\Proxy\Autoloader;
+use Adrien\AgentsMangaer;
+
 $pseudo = htmlspecialchars($_POST['pseudo']);
 $pass = htmlspecialchars($_POST['pass']);
 
-require ('db.php');
+
+require_once('../class/AgentsManager.php');
+$connection = new Adrien\AgentsMangager;
+$contact = $connection->read($pseudo);
+
+// Création d'un tableau $contact avec toute la base agents
+
+print_r($contact);
 
 
-    $stmt = $db-> prepare("SELECT * FROM agents WHERE pseudo_a = ?");
-    $stmt->execute([$pseudo]);
-    $agent = $stmt->fetch();
 
-
-    if(password_verify($pass,$agent['mot_de_passe_a'])){
-    header ('location:../views/interface.php');
-    } else {
-    echo "mauvais mdp";
-    }
+    if(password_verify($pass,$contact['mot_de_passe_a'])){
+        header ('location:../views/interface.php');
+        } else {
+        echo "mauvais mdp";
+    } 
 
 
 
