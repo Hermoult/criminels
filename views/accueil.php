@@ -3,7 +3,7 @@ session_start();
 $title = 'Accueil';
 $style = 'style';
 ob_start(); ?>
-<form class="body" action="../controllers/connectionVerif.php" method="POST">
+<form class="body" action="../controllers/loginController.php" method="POST">
     <div class="form-group col-6 col-sm-4" >
         <label for="pseudo">Pseudo</label>
         <input type="text" class="form-control" id="pseudo" placeholder="Pseudo" name="pseudo" required>

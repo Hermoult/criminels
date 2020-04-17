@@ -1,5 +1,4 @@
 <?php
-session_start();
 $title = 'Accueil';
 $style = 'style';
 ob_start(); ?> 

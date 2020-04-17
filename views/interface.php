@@ -2,10 +2,10 @@
 session_start();
 $title = 'interface';
 $style = 'style';
-ob_start(); 
-echo 'agent d\'accrediatation '. $_SESSION['accreditation'];?>
+ob_start(); ?>
 
-<form class="body" action="../controllers/connectionCrim.php" method="POST">
+<div class="body"> Agent d'accreditation <?php echo $_SESSION['accreditation'];?></div>
+<form class="body" action="../controllers/crimController.php" method="POST">
     <div class="form-group col-6 col-sm-4" >
         <label for="nom">nom du criminel</label>
         <input type="text" class="form-control" id="nom" placeholder="capone" name="nom" required>

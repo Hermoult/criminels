@@ -2,14 +2,18 @@
 session_start();
 use Doctrine\Common\Proxy\Autoloader;
 use Adrien\AgentsMangaer;
+use Entity\Agents;
 
 $pseudo = htmlspecialchars($_POST['pseudo']);
 $pass = htmlspecialchars($_POST['pass']);
 
 
+
 require_once('../class/AgentsManager.php');
 $connection = new Adrien\AgentsMangager;
 $contact = $connection->read($pseudo);
+
+
 
 print_r($contact);
 
@@ -22,22 +26,7 @@ print_r($contact);
         
         print_r($_SESSION);
         } else {
-        echo "mauvais identifiants";
+        $_SESSION['erreur'] ="erreur";
+        print_r($_SESSION);
+        header ('location:../views/accueil.php');
     }
-
-
-    /* $agent['niveau_accreditation_a'] */
-
-
-// 2 et 3 => formulaire de nom criminel
-//1 => choix entre rechercher criminel et consultr criminel 
-
-
-    /* if($mail == $d['mail'] && $mdp == $d['mdp']){
-        header('location: ../commande.html'); ;
-    }    else{
-        header('location:erreur.php'); ;
-    }
-    */
-
-/*     theonlyone , poulidor et agent. Ces mots de passe ont été hashé grâce à password_hash(). */
