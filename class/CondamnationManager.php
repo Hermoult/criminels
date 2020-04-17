@@ -2,10 +2,10 @@
 
 namespace Adrien;
 
-use Entity\recherches;
+/* use Entity\condamnations; */
 use PDO;
 
-class recherchesMangager{
+class condamnationsMangager{
 
     private $pdo;
     private $pdoStatement;
@@ -20,26 +20,21 @@ class recherchesMangager{
      * @return 
      */
     public function __construct(){
-        try {
-            
-            $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
-        } catch (\Throwable $th) {
-            die('error connect to database');
-        }
+
+        $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
     }
     
     /**
-     * readAll lit tous les recherches de la table
+     * readAll lit tous les condamnations de la table
      *
      * @return void
      */
 
     public function readAll()
     {
-        $this->pdoStatement = $this->pdo->query('SELECT * FROM recherches');
+        $this->pdoStatement = $this->pdo->query('SELECT * FROM condamnations');
         $this->contact = $this->pdoStatement->fetch();
         return $this->contact;
-
     }
     
     /**
@@ -48,15 +43,10 @@ class recherchesMangager{
      * @param  mixed $id
      * @return void
      */
-    public function read($nom)
+    public function read($pseudo)
     {
-        try {
-            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE nom_r = ?');
-            
-        } catch (\Throwable $th) {
-            die('error sql requete');
-        }
-        $this->pdoStatement->execute([$nom]);
+        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM condamnations WHERE pseudo_a = ?');
+        $this->pdoStatement->execute([$pseudo]);
         $this->contact = $this->pdoStatement->fetch();
         return $this->contact;
         }
@@ -72,10 +62,10 @@ class recherchesMangager{
      */
     public function create ($pseudo,$password,$accreditation)
     {
-        $this->pdoStatement = $this->pdo->prepare('INSERT INTO recherches VALUES (NULL,?,?,?)');
+        $this->pdoStatement = $this->pdo->prepare('INSERT INTO condamnations VALUES (NULL,?,?,?)');
         $this->pdoStatement->execute([$pseudo,$password,$accreditation]);
 
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
+        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM condamnations WHERE pseudo_a = ?');
         $this->pdoStatement->execute([$pseudo]);
         $this->newAgent = $this->pdoStatement->fetch();
 
@@ -97,16 +87,13 @@ class recherchesMangager{
          */
         public function update($pseudo,$newPseudo,$newPassword,$newaccreditaion){
 
-        
-
-            $this->pdoStatement = $this->pdo->prepare('UPDATE recherches SET (NULL,?,?,?) WHERE pseudo_a =?');
+            $this->pdoStatement = $this->pdo->prepare('UPDATE condamnations SET (NULL,?,?,?) WHERE pseudo_a =?');
             $this->pdoStatement->execute([$newPseudo,$newPassword,$newaccreditaion,$pseudo]);
 
-            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM recherches WHERE pseudo_a = ?');
+            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM condamnations WHERE pseudo_a = ?');
             $this->pdoStatement->execute([$pseudo]);
             $newAgent = $this->pdoStatement->fetch();
 
             return $newAgent;
         }
-    
 } 

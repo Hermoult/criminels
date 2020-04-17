@@ -7,9 +7,9 @@ $nom = htmlspecialchars($_POST['nom']);
 
 $connection = new Adrien\recherchesMangager;
 $contact = $connection->read($nom);
-$_SESSION = $contact;
 if ($contact['nom_r'] == $nom){
     header ('location:../views/criminels.php');
+    print_r($_SESSION['accreditation']);
     }else{
     echo "pas de profil corespondant";
 }

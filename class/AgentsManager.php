@@ -2,7 +2,7 @@
 
 namespace Adrien;
 
-use Entity\Agents;
+/* use Entity\Agents; */
 use PDO;
 
 class AgentsMangager{

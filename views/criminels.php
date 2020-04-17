@@ -2,7 +2,8 @@
 session_start();
 $title = 'interface';
 $style = 'style';
-ob_start(); ?>
+ob_start(); 
+echo 'agent d\'accrediatation'. $_SESSION['accreditation'];?>
 
 <div>
     <h1>AFFICHAGE DU PROFIL DU CRIMIER</h1>
