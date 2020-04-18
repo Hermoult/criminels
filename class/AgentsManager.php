@@ -2,8 +2,6 @@
 
 namespace Adrien;
 
-/* use Entity\Agents; */
-use PDO;
 
 class AgentsMangager{
 
@@ -21,7 +19,7 @@ class AgentsMangager{
      */
     public function __construct(){
 
-        $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+        $this->pdo = new \PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
     }
     
     /**
@@ -33,7 +31,7 @@ class AgentsMangager{
     public function readAll()
     {
         $this->pdoStatement = $this->pdo->query('SELECT * FROM agents');
-        $this->contact = $this->pdoStatement->fetch();
+        $this->contact = $this->pdoStatement->fetchAll();
         return $this->contact;
     }
     

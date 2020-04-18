@@ -547,5 +547,7 @@ class Recherches
                             $this->$method($value);
                     }
             }
-    }
+
+        }
+        
 }

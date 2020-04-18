@@ -1,9 +1,11 @@
 <?php
 
+// AUTRE METHODE (MEILLEUR) EN UTILISANT DOCTRINE 
+
 session_start();
 require_once __DIR__ . "\\EntityManager.php";
 
-use Adrien\Agents;
+use Entity\Agents;
 
 class LoginController
 {

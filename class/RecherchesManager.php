@@ -2,9 +2,6 @@
 
 namespace Adrien;
 
-use Entity\recherches;
-use PDO;
-
 class recherchesMangager{
 
     private $pdo;
@@ -22,7 +19,7 @@ class recherchesMangager{
     public function __construct(){
         try {
             
-            $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+            $this->pdo = new \PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
         } catch (\Throwable $th) {
             die('error connect to database');
         }

@@ -15,12 +15,10 @@
 
     <header> 
         <nav class="nav bg-dark">
-            
             <a class="nav-link h3" href="../index.php">Index</a>
             <a class="nav-link h3" href="../views/accueil.php">Accueil</a>
             <h1 class=" text-white mx-auto">FBI<h1>
-            
-        </nav>
+            </nav>
     </header>
     
     <?= $content ?>

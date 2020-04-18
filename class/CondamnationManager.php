@@ -2,8 +2,6 @@
 
 namespace Adrien;
 
-/* use Entity\condamnations; */
-use PDO;
 
 class condamnationsMangager{
 
@@ -21,7 +19,7 @@ class condamnationsMangager{
      */
     public function __construct(){
 
-        $this->pdo = new PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+        $this->pdo = new \PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
     }
     
     /**
