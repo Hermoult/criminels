@@ -15,6 +15,8 @@ $contact = $connection->read($pseudo);
 
 
 
+
+
 print_r($contact);
 
 // Création d'un tableau $contact avec toute la base agents
@@ -26,7 +28,5 @@ print_r($contact);
         
         print_r($_SESSION);
         } else {
-        $_SESSION['erreur'] ="erreur";
-        print_r($_SESSION);
-        header ('location:../views/accueil.php');
+        header ('location:../views/accueil.php?message=Identifiant%20ou%20mot%20de%20passe%20incorrect');
     }

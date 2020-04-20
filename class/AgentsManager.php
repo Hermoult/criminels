@@ -6,9 +6,10 @@ namespace Adrien;
 class AgentsMangager{
 
     private $pdo;
-    private $pdoStatement;
-    private $contact;
-    private $newAgent;
+
+    const ADDRESS='mysql:host=localhost;dbname=criminel';
+    const USER='adrien';
+    const PASS='adrien';
     
 
         
@@ -19,7 +20,7 @@ class AgentsMangager{
      */
     public function __construct(){
 
-        $this->pdo = new \PDO('mysql:host=localhost;dbname=criminel','adrien','adrien');
+        $this->pdo = new \PDO(self::ADDRESS,self::USER,self::PASS);
     }
     
     /**
@@ -30,9 +31,9 @@ class AgentsMangager{
 
     public function readAll()
     {
-        $this->pdoStatement = $this->pdo->query('SELECT * FROM agents');
-        $this->contact = $this->pdoStatement->fetchAll();
-        return $this->contact;
+        $pdoStatement = $this->pdo->query('SELECT * FROM agents');
+        $contact = $pdoStatement->fetchAll();
+        return $contact;
     }
     
     /**
@@ -43,11 +44,11 @@ class AgentsMangager{
      */
     public function read($pseudo)
     {
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
-        $this->pdoStatement->execute([$pseudo]);
-        $this->contact = $this->pdoStatement->fetch();
-        return $this->contact;
-        }
+        $pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+        $pdoStatement->execute([$pseudo]);
+        $contact = $pdoStatement->fetch();
+        return $contact;
+    }
 
             
     /**
@@ -60,17 +61,17 @@ class AgentsMangager{
      */
     public function create ($pseudo,$password,$accreditation)
     {
-        $this->pdoStatement = $this->pdo->prepare('INSERT INTO agents VALUES (NULL,?,?,?)');
-        $this->pdoStatement->execute([$pseudo,$password,$accreditation]);
+        $pdoStatement = $this->pdo->prepare('INSERT INTO agents VALUES (NULL,?,?,?)');
+        $pdoStatement->execute([$pseudo,$password,$accreditation]);
 
-        $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
-        $this->pdoStatement->execute([$pseudo]);
-        $this->newAgent = $this->pdoStatement->fetch();
+        $pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+        $pdoStatement->execute([$pseudo]);
+        $newAgent = $pdoStatement->fetch();
 
-        if(!$this->newAgent){
+        if(!$newAgent){
             return false;
         } else {
-            return $this->newAgent;
+            return $newAgent;
         }
     }
                 
@@ -85,12 +86,12 @@ class AgentsMangager{
          */
         public function update($pseudo,$newPseudo,$newPassword,$newaccreditaion){
 
-            $this->pdoStatement = $this->pdo->prepare('UPDATE agents SET (NULL,?,?,?) WHERE pseudo_a =?');
-            $this->pdoStatement->execute([$newPseudo,$newPassword,$newaccreditaion,$pseudo]);
+            $pdoStatement = $this->pdo->prepare('UPDATE agents SET (NULL,?,?,?) WHERE pseudo_a =?');
+            $pdoStatement->execute([$newPseudo,$newPassword,$newaccreditaion,$pseudo]);
 
-            $this->pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
-            $this->pdoStatement->execute([$pseudo]);
-            $newAgent = $this->pdoStatement->fetch();
+            $pdoStatement = $this->pdo->prepare('SELECT * FROM agents WHERE pseudo_a = ?');
+            $pdoStatement->execute([$pseudo]);
+            $newAgent = $pdoStatement->fetch();
 
             return $newAgent;
         }

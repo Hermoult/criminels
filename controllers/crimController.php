@@ -1,6 +1,6 @@
 <?php
 session_start();
-use Doctrine\Common\Proxy\Autoloader;
+use Entity\Recherches;
 
 require_once('../class/RecherchesManager.php');
 require_once('../models/Entities/Recherches.php');
@@ -10,10 +10,10 @@ $connection = new Adrien\recherchesMangager;
 $contact = $connection->read($nom);
 
 
+
 if ($contact['nom_r'] == $nom){
     header ('location:../views/criminels.php');
     print_r($_SESSION['accreditation']);
     }else{
-    echo "pas de profil corespondant";
+        header ('location:../views/interface.php?message=Le%20criminel%20n%27existe%20pas');
 }
-

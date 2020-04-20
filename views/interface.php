@@ -10,6 +10,15 @@ ob_start(); ?>
         <label for="nom">nom du criminel</label>
         <input type="text" class="form-control" id="nom" placeholder="capone" name="nom" required>
     </div>
+    <?php
+    if (isset($_GET['message'])) {
+    ?>
+        <div class="alert alert-danger" role="alert">
+            <?= $_GET['message']; ?>
+        </div>
+    <?php
+    }
+    ?>
     <div>
     <button type="submit" class="btn btn-primary bg-dark border-0" value="Envoyer">Consulter profil</button>
     </div>
@@ -23,5 +32,4 @@ if ($_SESSION['accreditation'] == 1){
 }else{
     return;
 }
-
 ?>
